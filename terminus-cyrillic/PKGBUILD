@@ -1,0 +1,43 @@
+# Maintainer: Eugen Zagorodniy e dot zagorodniy at gmail dot com
+# Contributor: Travis Raines <rainest@carleton.edu>
+# Contributor: Vesa Kaihlavirta <vegai@iki.fi>
+# Contributor: Kristoffer Fossgård <kfs1@online.no>
+
+pkgname=terminus-cyrillic
+pkgver=4.32
+pkgrel=2
+pkgdesc="Terminus font with dv1, ge1 and ij1 patches applied"
+depends=(xorg-fonts-encodings xorg-fonts-alias xorg-font-utils fontconfig)
+replaces=(xserver-terminus-fonts)
+conflicts=(terminus-font)
+arch=(any)
+source=("http://downloads.sourceforge.net/project/terminus-font/terminus-font-${pkgver}/terminus-font-${pkgver}.tar.gz")
+url="http://sourceforge.net/projects/terminus-font/"
+md5sums=('9b74047edcc236a7d4af8abf966c3e7c')
+install=terminus-cyrillic.install
+license=('GPL-2' 'OFL')
+
+build() { 
+  cd $srcdir/terminus-font-$pkgver
+
+  # Uncomment patches you need:
+  #
+  # ao2 - round ('o'-like) cyrillic 'a'
+  # cm2 - variants of letters with cirkumflex, caron and macron
+  # dv1 - printing cyrillic 'de' and 've' (default is handwritten)
+  # ge1 - printing cyrillic 'ge' (default is handwritten)
+  # gq2 - grave accent and apostrophe as opening and closing single quotes
+  # ij1 - printing cyrillic 'i' and 'short i' (default is handwritten)
+  # ka2 - high cyrillic 'ka' (looks as latin 'k')
+  
+  # patch -i alt/ao2.diff
+  # patch -i alt/cm2.diff
+  patch -i alt/dv1.diff
+  patch -i alt/ge1.diff
+  # patch -i alt/gq2.diff
+  patch -i alt/ij1.diff
+  # patch -i alt/ka2.diff
+  
+  ./configure --prefix=/usr --x11dir=/usr/share/fonts/local/ --psfdir=/usr/share/kbd/consolefonts/
+  make DESTDIR=$pkgdir install
+}
