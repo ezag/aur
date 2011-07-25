@@ -11,7 +11,7 @@ win32 {
 }
 
 target.path    = $$INSTALLBASE/lib
-headers.path   = $$INSTALLBASE/include/qwt
+headers.path   = $$INSTALLBASE/include/qwt5
 doc.path       = $$INSTALLBASE/share
 
 ######################################################################
