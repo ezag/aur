@@ -1,30 +1,44 @@
-# $Id$
-# Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
+# Maintainer:  Eugen Zagorodniy <e dot zagorodniy at gmail dot com>
+# Contributor: Evangelos Foutras <evangelos@foutrelis.com>
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Andrea Scarpino <andrea@archlinux.org>
 # Contributor: Alexander Fehr <pizzapunk gmail com>
 # Contributor: Lucien Immink <l.immink@student.fnt.hvu.nl>
 
-pkgname=('pidgin' 'libpurple' 'finch')
+pkgname='pidgin-zag'
 pkgver=2.9.0
-pkgrel=3
+pkgrel=1
 arch=('i686' 'x86_64')
 url="http://pidgin.im/"
 license=('GPL')
+pkgdesc="Pidgin with patch for ticket 10593"
 makedepends=('startup-notification' 'gtkspell' 'libxss' 'nss' 'libsasl' 'libsm'
              'python2' 'hicolor-icon-theme' 'silc-toolkit' 'gstreamer0.10'
              'farsight2' 'avahi' 'tk' 'ca-certificates' 'intltool'
              'networkmanager')
+depends=("libpurple=$pkgver-3" 'startup-notification' 'gtkspell'
+         'libxss' 'libsm' 'gstreamer0.10' 'hicolor-icon-theme')
+optdepends=('aspell: for spelling correction'
+            'ca-certificates: SSL CA certificates'
+            'gstreamer0.10-good-plugins: video and voice support'
+            'tk: Tcl/Tk scripting support')
+install=pidgin.install
 options=('!libtool')
-source=(http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.bz2
-        nm09-more.patch
-        ticket-14351-multiple-display-of-room-members.patch)
+conflicts=('pidgin')
+provides=('pidgin')
+source=(
+http://downloads.sourceforge.net/pidgin/pidgin-$pkgver.tar.bz2
+nm09-more.patch
+ticket-14351-multiple-display-of-room-members.patch
+http://developer.pidgin.im/raw-attachment/ticket/10593/pidgin-ticket-10593.patch
+)
 md5sums=('2cd285c7a40f93b7a51bfe733971d3a6'
          'a673659d86c7a65aa710f7c8c7feda82'
-         '47f16f838b741cfdeda18d7b08a7b816')
+         '47f16f838b741cfdeda18d7b08a7b816'
+         '1dcf7d1ec2b0b9e47a9754c5b4cb277d')
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/pidgin-$pkgver"
 
   # Further fixes for NetworkManager 0.9
   # http://developer.pidgin.im/ticket/13859
@@ -33,6 +47,10 @@ build() {
   # Fix upstream issue #14351: multiple display of room members
   # http://developer.pidgin.im/ticket/14351
   patch -Np0 -i "$srcdir/ticket-14351-multiple-display-of-room-members.patch"
+
+  # #10593: Tray notification for jabber groupchats
+  # http://developer.pidgin.im/ticket/10593
+  patch -Np1 -i "$srcdir/pidgin-ticket-10593.patch"
 
   # Use Python 2
   sed -i 's/env python$/\02/' */plugins/*.py \
@@ -52,15 +70,7 @@ build() {
     make
 }
 
-package_pidgin(){
-  pkgdesc="Multi-protocol instant messaging client"
-  depends=("libpurple=$pkgver-$pkgrel" 'startup-notification' 'gtkspell'
-           'libxss' 'libsm' 'gstreamer0.10' 'hicolor-icon-theme')
-  optdepends=('aspell: for spelling correction'
-              'ca-certificates: SSL CA certificates'
-              'gstreamer0.10-good-plugins: video and voice support'
-              'tk: Tcl/Tk scripting support')
-  install=pidgin.install
+package(){
 
   cd "$srcdir/pidgin-$pkgver"
 
@@ -77,39 +87,3 @@ package_pidgin(){
 
   rm "$pkgdir/usr/share/man/man1/finch.1"
 }
-
-package_libpurple(){
-  pkgdesc="IM library extracted from Pidgin"
-  depends=('farsight2' 'libsasl' 'dbus-glib' 'silc-toolkit' 'nss')
-  optdepends=('avahi: Bonjour protocol support'
-              'dbus-python: for purple-remote and purple-url-handler')
-
-  cd "$srcdir/pidgin-$pkgver"
-
-  for _dir in libpurple share/sounds share/ca-certs m4macros po; do
-    make -C "$_dir" DESTDIR="$pkgdir" install
-  done
-}
-
-package_finch(){
-  pkgdesc="A ncurses-based messaging client"
-  depends=("libpurple=$pkgver-$pkgrel" 'python2' 'gstreamer0.10')
-  optdepends=('avahi: Bonjour protocol support'
-              'ca-certificates: SSL CA certificates'
-              'tk: Tcl/Tk scripting support')
-
-  cd "$srcdir/pidgin-$pkgver"
-
-  # For linking
-  make -C libpurple DESTDIR="$pkgdir" install-libLTLIBRARIES
-
-  make -C finch DESTDIR="$pkgdir" install
-  make -C doc DESTDIR="$pkgdir" install
-
-  # Remove files that are packaged in libpurle
-  make -C libpurple DESTDIR="$pkgdir" uninstall-libLTLIBRARIES
-
-  rm "$pkgdir"/usr/share/man/man1/pidgin.1
-}
-
-# vim:set ts=2 sw=2 et:
