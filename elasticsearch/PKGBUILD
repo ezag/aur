@@ -43,6 +43,11 @@ package() {
       -e "/^WRAPPER_TEST_CMD=\"\"$/iDIST_ARCH=x86; DIST_BITS=$_bits"    \
       -i bin/service/elasticsearch
 
+  # Fix log file location
+  # See https://github.com/elasticsearch/elasticsearch-servicewrapper/issues/8
+  sed -e 's/\(wrapper\.logfile\=\).*$/\1%ES_HOME%\/logs\/service.log/'  \
+      -i bin/service/elasticsearch.conf
+
   # Set proper permissions
   chmod +x bin/service/exec/*
 
