@@ -1,7 +1,7 @@
 # Maintainer: Eugen Zagorodniy e dot zagorodniy at gmail dot com
 pkgname=elasticsearch
-pkgver=0.17.8
-pkgrel=2
+pkgver=0.17.9
+pkgrel=1
 pkgdesc="Distributed RESTful search engine built on top of Lucene"
 arch=('i686' 'x86_64')
 url="http://www.elasticsearch.org/"
@@ -11,7 +11,7 @@ install='elasticsearch.install'
 source=(
   "https://github.com/downloads/$pkgname/$pkgname/$pkgname-$pkgver.tar.gz"
 )
-md5sums=('fb02e4e15f27a395903b4a75bbd7e927')
+md5sums=('be59eaf874280e8f748269531dd0cf07')
 
 build() {
   cd $srcdir
