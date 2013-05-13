@@ -1,14 +1,15 @@
 # Maintainer: Brian Hood <brianh6854@googlemail.com>
+# Contributor: Eugen Zagorodniy <https://github.com/ezag>
 
 pkgname=monetdb
-pkgver=11.15.3
+pkgver=11.15.7
 pkgrel=1
 pkgdesc="MonetDB version $pkgver"
 arch=('i686' 'x86_64')
 url="http://www.monetdb.org/Home"
 license=('custom')
-source=("http://dev.monetdb.org/downloads/sources/Latest/MonetDB-$pkgver.tar.bz2")
-sha1sums=('fad3ca9abad488298347b898951d5f9649c4e6c3')
+source=("http://dev.monetdb.org/downloads/sources/Latest/MonetDB-$pkgver.tar.xz")
+sha1sums=('407b1300a0b9e467ed326171ab9b75c64a72ee32')
 
 
 build() {
