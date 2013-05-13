@@ -1,0 +1,23 @@
+# Maintainer: Brian Hood <brianh6854@googlemail.com>
+
+pkgname=monetdb
+pkgver=11.15.3
+pkgrel=1
+pkgdesc="MonetDB version $pkgver"
+arch=('i686' 'x86_64')
+url="http://www.monetdb.org/Home"
+license=('custom')
+source=("http://dev.monetdb.org/downloads/sources/Latest/MonetDB-$pkgver.tar.bz2")
+sha1sums=('fad3ca9abad488298347b898951d5f9649c4e6c3')
+
+
+build() {
+  rm -Rf $srcdir/build
+  mkdir $srcdir/build
+  cd $srcdir/build
+
+  $srcdir/MonetDB-$pkgver/configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-optimize --disable-debug --disable-assert
+  make || return 1
+  make DESTDIR=$pkgdir install
+}
+# vim:syntax=sh
