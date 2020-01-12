@@ -1,0 +1,108 @@
+# Maintainer: Eugen Zagorodniy <https://github.com/ezag>
+
+pkgname=noforth
+pkgver=190519
+pkgrel=1
+pkgdesc='Interactive 16-bit stand-alone forth for MSP430'
+arch=('any')
+url=http://home.hccnet.nl/anij/nof/noforth.html
+license=('GPL3')
+
+source=(
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%20149.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%202433.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%205739.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%2059x9.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%205994.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%202553.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%202955.zip'
+    'http://home.hccnet.nl/anij/nof/ihxx/noforths%202x55.zip'
+)
+sha256sums=(
+    'b90a3d962529fb81b37617579faca2a75683395732cd660730ebe25de2b22fa9'
+    '64f3f4cd315d76b46578a8166542e707df26a7269724fb9be139a8f1c2789d66'
+    '782ff18185465304dbbc2018d0c7572bc1e885644ce276a7014bca8187eb7970'
+    '728c1318cccf669b8f88cb3bbafdf7ecba4a4b82fa4f6647f9a7c8963e0b0ee7'
+    '4b2925e677535e56e09eb504bab240e3286d87a5eb16d88fcaf8b4a3b8759ee2'
+    '4a06ffde951d5653d2571a10e6d7d40979beb1748a151ec102a86b6c4c3acc42'
+    'a8d9d4d52a09cebccb981da103e64e8e0677cf04a3903d4358951a802a0b4655'
+    '1af1f66991070379f592fb88655b3c68c47cb156c55f89453e1c4c671f465e74'
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/share/$pkgname"
+    cd "$_"
+
+    install -m644 "$srcdir/noforths 149/noforth c149 190519.hex" 149-c.hex
+    install -m644 "$srcdir/noforths 149/noforth v149 190519.hex" 149-v.hex
+    install -m644 "$srcdir/noforths 149/noforth cc149 190519.hex" 149-cc.hex
+    install -m644 "$srcdir/noforths 149/noforth vv149 190519.hex" 149-vv.hex
+
+    install -m644 "$srcdir/noforths 2433/noforth c2433 190519.hex" 2433-c.hex
+    install -m644 "$srcdir/noforths 2433/noforth v2433 190519.hex" 2433-v.hex
+    install -m644 "$srcdir/noforths 2433/noforth cc2433 190519.hex" 2433-cc.hex
+    install -m644 "$srcdir/noforths 2433/noforth vv2433 190519.hex" 2433-vv.hex
+
+    install -m644 "$srcdir/noforths 5739/noforth c5739 190519.hex" 5739-c.hex
+    install -m644 "$srcdir/noforths 5739/noforth v5739 190519.hex" 5739-v.hex
+    install -m644 "$srcdir/noforths 5739/noforth cc5739 190519.hex" 5739-cc.hex
+    install -m644 "$srcdir/noforths 5739/noforth vv5739 190519.hex" 5739-vv.hex
+
+    install -m644 "$srcdir/noforths 59x9/noforth c59x9 190519.hex" 59x9-c.hex
+    install -m644 "$srcdir/noforths 59x9/noforth v59x9 190519.hex" 59x9-v.hex
+    install -m644 "$srcdir/noforths 59x9/noforth cc59x9 190519.hex" 59x9-cc.hex
+    install -m644 "$srcdir/noforths 59x9/noforth vv59x9 190519.hex" 59x9-vv.hex
+
+    install -m644 "$srcdir/noforths 5994/noforth c5994 190519.hex" 5994-c.hex
+    install -m644 "$srcdir/noforths 5994/noforth v5994 190519.hex" 5994-v.hex
+    install -m644 "$srcdir/noforths 5994/noforth cc5994 190519.hex" 5994-cc.hex
+    install -m644 "$srcdir/noforths 5994/noforth vv5994 190519.hex" 5994-vv.hex
+
+    install -m644 "$srcdir/noforths 2553/noforth c2553 190519.hex" 2553-c.hex
+    install -m644 "$srcdir/noforths 2553/noforth v2553 190519.hex" 2553-v.hex
+    install -m644 "$srcdir/noforths 2553/noforth cc2553 190519.hex" 2553-cc.hex
+    install -m644 "$srcdir/noforths 2553/noforth vv2553 190519.hex" 2553-vv.hex
+    install -m644 "$srcdir/noforths 2553/noforth c-2553 190519.hex" 2553-c-.hex
+    install -m644 "$srcdir/noforths 2553/noforth v-2553 190519.hex" 2553-v-.hex
+    install -m644 "$srcdir/noforths 2553/noforth cc-2553 190519.hex" 2553-cc-.hex
+    install -m644 "$srcdir/noforths 2553/noforth vv-2553 190519.hex" 2553-vv-.hex
+
+    install -m644 "$srcdir/noforths 2955/noforth c2955 190519.hex" 2955-c.hex
+    install -m644 "$srcdir/noforths 2955/noforth v2955 190519.hex" 2955-v.hex
+    install -m644 "$srcdir/noforths 2955/noforth cc2955 190519.hex" 2955-cc.hex
+    install -m644 "$srcdir/noforths 2955/noforth vv2955 190519.hex" 2955-vv.hex
+    install -m644 "$srcdir/noforths 2955/noforth c-2955 190519.hex" 2955-c-.hex
+    install -m644 "$srcdir/noforths 2955/noforth v-2955 190519.hex" 2955-v-.hex
+    install -m644 "$srcdir/noforths 2955/noforth cc-2955 190519.hex" 2955-cc-.hex
+    install -m644 "$srcdir/noforths 2955/noforth vv-2955 190519.hex" 2955-vv-.hex
+
+    install -m644 "$srcdir/noforths 2x55/noforth c2x55 190519.hex" 2x55-c.hex
+    install -m644 "$srcdir/noforths 2x55/noforth v2x55 190519.hex" 2x55-v.hex
+    install -m644 "$srcdir/noforths 2x55/noforth cc2x55 190519.hex" 2x55-cc.hex
+    install -m644 "$srcdir/noforths 2x55/noforth vv2x55 190519.hex" 2x55-vv.hex
+
+
+    mkdir -p "$pkgdir/usr/share/doc/$pkgname"
+
+    cd "$_"
+    install -Dm644 "$srcdir/noforths 149/readme - noforth 149.pdf" 149/readme.pdf
+    install -Dm644 "$srcdir/noforths 2433/readme - noforth 2433.pdf" 2433/readme.pdf
+    install -Dm644 "$srcdir/noforths 5739/readme - noforth 5739.pdf" 5739/readme.pdf
+    install -Dm644 "$srcdir/noforths 59x9/readme - noforth 59x9.pdf" 59x9/readme.pdf
+    install -Dm644 "$srcdir/noforths 5994/readme - noforth 5994.pdf" 5994/readme.pdf
+    install -Dm644 "$srcdir/noforths 2553/readme - noforth 2553.pdf" 2553/readme.pdf
+    install -Dm644 "$srcdir/noforths 2955/readme - noforth 2955.pdf" 2955/readme.pdf
+    install -Dm644 "$srcdir/noforths 2x55/readme - noforth 2x55.pdf" 2x55/readme.pdf
+}
+
+
+
+
+
+
+
+
+
+
+
+
