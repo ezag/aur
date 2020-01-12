@@ -24,6 +24,17 @@ source=(
     'http://home.hccnet.nl/anij/nof/noforth%20asm.f'
     'http://home.hccnet.nl/anij/nof/noforth%20das.f'
     'http://home.hccnet.nl/anij/nof/aux430asm.f'
+
+    'http://home.hccnet.nl/anij/nof/boards/msp430f149%20minim%20core%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp430f149%20dupont%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp430f149%20mini-v3%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr2433%20experimenter%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr5739%20experimenter%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr5969%20experimenter%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr5994%20experimenter%20board.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp430g2553%20launchpad.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp430g2553%20egel%20kit.pdf'
+    'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr2355%20experimenter%20board.pdf'
 )
 sha256sums=(
     'b90a3d962529fb81b37617579faca2a75683395732cd660730ebe25de2b22fa9'
@@ -41,6 +52,17 @@ sha256sums=(
     'dced05534c1e82355af10646d790e9a05d0a88a6037ee94b32d065e85767d938'
     'cff08165e3f1f12acd887965936a0237c8d790ca2e72cca26ff0fdb86239f490'
     '433acf3d5c9486b416f7ee02947de4cf97222cdb03f3cf8d22ad87b305e1a3e2'
+
+    '87cda529587603eed15691c19c2af3dd088bb27dcff15f3a9e051e3f50341beb'
+    'd7d655518842bafe8bd2c979a6faf3c321adfecfb71b92279ff3612841571e53'
+    'b6ac38fef53a4852d7a9499e1727b3a739ffc8e74660c02b1bacf03adfb70fab'
+    '73719aeaedb07c172ab5bc9f16eb6f456a0a23ff68e2e3a02a44e6fdba5b013c'
+    '502712f59e7b6c596d7bd4499d4913023a61284d37f7259b3c3ab442eae6cc0f'
+    '6625180b04e6ea97e69ef86fe5d7169e114fd47fa26cfa1437e8e54c75b65319'
+    'bc6b5b4d1af917a077ae5ef592b28e5be247591241444437054741f64322c8cb'
+    'e013cc12e831ad26be3a462da34e4766f1e0f5ec3d05f2c34a83051a48a512a5'
+    '68e7493a18f4c0577b0eb9a0659232a014bf0aaa337043691b12a44c2065e9da'
+    'd763e3213b869efcb34a0593bb0d32f774845b00b302e6527b0f5f63730177b5'
 )
 
 package() {
@@ -106,24 +128,23 @@ package() {
     mkdir -p "$pkgdir/usr/share/doc/$pkgname"
 
     cd "$_"
-    install -Dm644 "$srcdir/noforths 149/readme - noforth 149.pdf" 149/readme.pdf
-    install -Dm644 "$srcdir/noforths 2433/readme - noforth 2433.pdf" 2433/readme.pdf
-    install -Dm644 "$srcdir/noforths 5739/readme - noforth 5739.pdf" 5739/readme.pdf
-    install -Dm644 "$srcdir/noforths 59x9/readme - noforth 59x9.pdf" 59x9/readme.pdf
-    install -Dm644 "$srcdir/noforths 5994/readme - noforth 5994.pdf" 5994/readme.pdf
-    install -Dm644 "$srcdir/noforths 2553/readme - noforth 2553.pdf" 2553/readme.pdf
-    install -Dm644 "$srcdir/noforths 2955/readme - noforth 2955.pdf" 2955/readme.pdf
-    install -Dm644 "$srcdir/noforths 2x55/readme - noforth 2x55.pdf" 2x55/readme.pdf
+    install -m644 "$srcdir/noforths 149/readme - noforth 149.pdf" readme-149.pdf
+    install -m644 "$srcdir/noforths 2433/readme - noforth 2433.pdf" readme-2433.pdf
+    install -m644 "$srcdir/noforths 5739/readme - noforth 5739.pdf" readme-5739.pdf
+    install -m644 "$srcdir/noforths 59x9/readme - noforth 59x9.pdf" readme-59x9.pdf
+    install -m644 "$srcdir/noforths 5994/readme - noforth 5994.pdf" readme-5994.pdf
+    install -m644 "$srcdir/noforths 2553/readme - noforth 2553.pdf" readme-2553.pdf
+    install -m644 "$srcdir/noforths 2955/readme - noforth 2955.pdf" readme-2955.pdf
+    install -m644 "$srcdir/noforths 2x55/readme - noforth 2x55.pdf" readme-2x55.pdf
+
+    install -m644 "$srcdir/msp430f149%20minim%20core%20board.pdf" msp430f149-minim-core.pdf
+    install -m644 "$srcdir/msp430f149%20dupont%20board.pdf" msp430f149-dupont.pdf
+    install -m644 "$srcdir/msp430f149%20mini-v3%20board.pdf" msp430f149-mini-v3.pdf
+    install -m644 "$srcdir/msp-exp430fr2433%20experimenter%20board.pdf" msp-exp430fr2433.pdf
+    install -m644 "$srcdir/msp-exp430fr5739%20experimenter%20board.pdf" msp-exp430fr5739.pdf
+    install -m644 "$srcdir/msp-exp430fr5969%20experimenter%20board.pdf" msp-exp430fr5969.pdf
+    install -m644 "$srcdir/msp-exp430fr5994%20experimenter%20board.pdf" msp-exp430fr5994.pdf
+    install -m644 "$srcdir/msp430g2553%20launchpad.pdf" msp430g2553-launchpad.pdf
+    install -m644 "$srcdir/msp430g2553%20egel%20kit.pdf" msp430g2553-egel-kit.pdf
+    install -m644 "$srcdir/msp-exp430fr2355%20experimenter%20board.pdf" msp-exp430fr2355.pdf
 }
-
-
-
-
-
-
-
-
-
-
-
-
