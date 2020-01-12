@@ -35,6 +35,11 @@ source=(
     'http://home.hccnet.nl/anij/nof/boards/msp430g2553%20launchpad.pdf'
     'http://home.hccnet.nl/anij/nof/boards/msp430g2553%20egel%20kit.pdf'
     'http://home.hccnet.nl/anij/nof/boards/msp-exp430fr2355%20experimenter%20board.pdf'
+
+    'http://home.hccnet.nl/anij/nof/howto/howto-fr2355.pdf'
+    'http://home.hccnet.nl/anij/nof/howto/msp-exp430fr2355%20board%20as%20programmer.pdf'
+    'http://home.hccnet.nl/anij/nof/howto/howto-fr59xx-linux.pdf'
+    'http://home.hccnet.nl/anij/nof/howto/howto-linux.pdf'
 )
 sha256sums=(
     'b90a3d962529fb81b37617579faca2a75683395732cd660730ebe25de2b22fa9'
@@ -63,6 +68,11 @@ sha256sums=(
     'e013cc12e831ad26be3a462da34e4766f1e0f5ec3d05f2c34a83051a48a512a5'
     '68e7493a18f4c0577b0eb9a0659232a014bf0aaa337043691b12a44c2065e9da'
     'd763e3213b869efcb34a0593bb0d32f774845b00b302e6527b0f5f63730177b5'
+
+    'd85bcb373465157594a79c7fe92938b33320cc092f75e9001065edd0529c3cef'
+    'e3f7637220b1af1c2316a0a942a3bc40ed2a075797de59d294d36d40179a3c43'
+    'd3bdba398884e3b6b15d26b2d35a4a4f7ceca22a95616ee87549038f19779e6b'
+    '278faf18867e0e8c0969660fdcfc0d0bba8f3c15d05274963d2edd31fe9a6db4'
 )
 
 package() {
@@ -147,4 +157,9 @@ package() {
     install -m644 "$srcdir/msp430g2553%20launchpad.pdf" msp430g2553-launchpad.pdf
     install -m644 "$srcdir/msp430g2553%20egel%20kit.pdf" msp430g2553-egel-kit.pdf
     install -m644 "$srcdir/msp-exp430fr2355%20experimenter%20board.pdf" msp-exp430fr2355.pdf
+
+    install -m644 "$srcdir/howto-fr2355.pdf" howto-fr2335-with-uniflash.pdf
+    install -m644 "$srcdir/msp-exp430fr2355%20board%20as%20programmer.pdf" howto-msp-exp430fr2355-as-programmer.pdf
+    install -m644 "$srcdir/howto-fr59xx-linux.pdf" howto-fr59xx-linux.pdf
+    install -m644 "$srcdir/howto-linux.pdf" howto-msp430g2553-launchpad-linux.pdf
 }
